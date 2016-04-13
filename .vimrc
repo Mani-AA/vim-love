@@ -5,10 +5,10 @@ set nocompatible " be iMproved, required
 
 set autoindent        " Indent at the same level of the previous line
 set copyindent        " Copy the previous indentation on autoindenting
-set shiftwidth=2      " Use indents of x spaces
+set shiftwidth=4      " Use indents of x spaces
 set expandtab         " Tabs are spaces, not tabs
-set tabstop=2         " An indentation every four columns
-set softtabstop=2     " Let backspace delete indent
+set tabstop=4         " An indentation every four columns
+set softtabstop=4     " Let backspace delete indent
 set nojoinspaces      " Prevents inserting two spaces after punctuation on a join (J)
 set splitright        " Puts new vsplit windows to the right of the current
 set splitbelow        " Puts new split windows to the bottom of the current
@@ -198,21 +198,25 @@ if isdirectory(expand("~/.vim/bundle/nerdtree"))
 endif
 
 " Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+if isdirectory(expand("~/.vim/bundle/syntastic"))
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 0
+    let g:syntastic_check_on_open = 0
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 
-" Show Syntastic error list
-map <leader>e :Errors<CR>
+    " Show Syntastic error list
+    map <leader>e :Errors<CR>
+endif
 
 " CTRL-P
-let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:50'
-let g:ctrlp_extensions = ['buffertag']
-" Make CtrlP load 100x faster by making it skip files inside .gitignore
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-map <leader>t :CtrlPBufTag<CR>
+if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
+    let g:ctrlp_map = '<leader>p'
+    let g:ctrlp_cmd = 'CtrlP'
+    let g:ctrlp_working_path_mode = 'ra'
+    let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:50'
+    let g:ctrlp_extensions = ['buffertag']
+    " Make CtrlP load 100x faster by making it skip files inside .gitignore
+    let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+    map <leader>t :CtrlPBufTag<CR>
+endif
