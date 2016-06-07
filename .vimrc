@@ -1,14 +1,19 @@
 set nocompatible " be iMproved, required
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Notes
+" - :map and :noremap are recursive and non-recursive versions of the various mapping commands.
+" - Vim is a modal editor. It has a [n]ormal mode, [v]isual mode and other modes.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Behavior & Formatting
 
 set autoindent        " Indent at the same level of the previous line
 set copyindent        " Copy the previous indentation on autoindenting
-set shiftwidth=4      " Use indents of x spaces
+set shiftwidth=2      " Use indents of x spaces
 set expandtab         " Tabs are spaces, not tabs
-set tabstop=4         " An indentation every four columns
-set softtabstop=4     " Let backspace delete indent
+set tabstop=2         " An indentation every four columns
+set softtabstop=2     " Let backspace delete indent
 set nojoinspaces      " Prevents inserting two spaces after punctuation on a join (J)
 set splitright        " Puts new vsplit windows to the right of the current
 set splitbelow        " Puts new split windows to the bottom of the current
@@ -90,15 +95,13 @@ nmap <leader>{ :resize -25<CR>
 " Close all tabs except the current one
 nmap <leader>ct :tabonly<CR>
 
-" Toggle location list
-nmap <leader>l :lopen<CR>
-nmap <leader>cl :lclose<CR>
+" toggle location list window
+nmap <leader>l :lopen<cr>
+nmap <leader>cl :lclose<cr>
 
-" Write ("Save") file
-nmap <leader>/w :w<CR>
-
-" Quite ("Exit") file
-nmap <leader>/q :q<CR>
+" toggle quickfix list window
+nmap <leader>f :copen<cr>
+nmap <leader>cf :cclose<cr>
 
 " Reload file (:edit | :e)
 nmap <leader>/r :e<CR>
@@ -167,6 +170,10 @@ Plugin 'scrooloose/syntastic'
 " CTRL-P - Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" Aligning text with Tabular
+" (cmd :Tab/:)
+Plugin 'godlygeek/tabular'
+
 " All plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
@@ -220,3 +227,6 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim"))
     let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
     map <leader>t :CtrlPBufTag<CR>
 endif
+
+" Tabular
+map <leader>a :Tab /
